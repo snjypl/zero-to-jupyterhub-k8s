@@ -34,6 +34,9 @@ metadata:
     {{- .Values.proxy.service.annotations | toYaml | trimSuffix "\n" | nindent 4 }}
   {{- end }}
 spec:
+  {{- if .Values.proxy.service.ingressClassName }}
+  ingressClassName: .Values.proxy.service.ingressClassName
+  {{- end }}
   selector:
     {{- if $autoHTTPS }}
     component: autohttps
